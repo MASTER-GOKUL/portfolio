@@ -1,5 +1,20 @@
 $(document).ready(function () {
-
+// Wait for the window to load completely
+window.addEventListener('load', function() {
+    // Get the preloader container
+    const loader = document.querySelector('.loader-container');
+    
+    // Add the fade-out class after a short delay to create the fade effect
+    setTimeout(() => {
+      loader.classList.add('fade-out');
+    }, 1000); // Adjust the delay as needed (1 second in this case)
+    
+    // Optionally, remove the preloader from the DOM after the animation ends
+    loader.addEventListener('transitionend', () => {
+      loader.remove();
+    });
+  });
+  
     $('#menu').click(function () {
         $(this).toggleClass('fa-times');
         $('.navbar').toggleClass('nav-toggle');
@@ -38,20 +53,24 @@ $(document).ready(function () {
     });
 
     // <!-- emailjs to mail contact form data -->
-    $("#contact-form").submit(function (event) {
-        emailjs.init("user_TTDmetQLYgWCLzHTDgqxm");
+// Initialize EmailJS
+emailjs.init("user_qhM8AvHS6qgPx4pYR");
 
-        emailjs.sendForm('contact_service', 'template_contact', '#contact-form')
-            .then(function (response) {
-                console.log('SUCCESS!', response.status, response.text);
-                document.getElementById("contact-form").reset();
-                alert("Form Submitted Successfully");
-            }, function (error) {
-                console.log('FAILED...', error);
-                alert("Form Submission Failed! Try Again");
-            });
-        event.preventDefault();
-    });
+// Form submission handler
+$("#contact-form").submit(function (event) {
+    event.preventDefault(); // Prevent default form submission behavior
+
+    // Send the form data using EmailJS
+    emailjs.sendForm('service_r2kkznc', 'template_ji7q0em', '#contact-form')
+      .then(function (response) {
+          console.log('SUCCESS!', response.status, response.text);
+          document.getElementById("contact-form").reset(); // Reset form fields
+          alert("Form Submitted Successfully"); // Success message
+      }, function (error) {
+          console.log('FAILED...', error);
+          alert("Form Submission Failed! Try Again"); // Failure message
+      });
+});
     // <!-- emailjs to mail contact form data -->
 
 });
