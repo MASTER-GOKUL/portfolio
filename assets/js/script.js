@@ -78,7 +78,7 @@ $("#contact-form").submit(function (event) {
 document.addEventListener('visibilitychange',
     function () {
         if (document.visibilityState === "visible") {
-            document.title = "Portfolio | Jigar Sable";
+            document.title = "Portfolio | GOKUL M";
             $("#favicon").attr("href", "assets/images/favicon.png");
         }
         else {
